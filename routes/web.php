@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::middleware(['auth'])->group(function(){
+//     Route::any('posts/search','App\Http\Controllers\PostController@search')->name('posts.search');
+//     Route::resource('posts', 'App\Http\Controllers\PostController');
+// });
+
+Route::prefix('admin')->group(function ()
+{
+    Route::resource('city', 'App\Http\Controllers\Admin\CityController');
 });
