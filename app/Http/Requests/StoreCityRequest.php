@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUpdateCityRequest extends FormRequest
+class StoreCityRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,15 @@ class StoreUpdateCityRequest extends FormRequest
      */
     public function rules()
     {
+        // tabela, o campo que tem q ser unico, parametro dizendo que tem que ignorar
+        //se o user que está cendo editado é ele mesmo.!
+        // ex. cpf, se for editar não tem mais problema, pois sabe agora q aquele usuario
+        //possui este cpf
+        // unique:cities,name,$this->id
+        //unique:table,column,except,idColumn
+        //mas não da certo
         return [
-            'name' => 'bail|required|min:3|max:100|unique:cities'
+            'name' => "bail|required|min:3|max:100|unique:cities",
         ];
     }
     // /**

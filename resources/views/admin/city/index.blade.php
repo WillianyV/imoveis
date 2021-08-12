@@ -16,7 +16,18 @@
                     <tr>
                         <td>#{{ $city->id }}</td>
                         <td>{{ $city->name }}</td>
-                        <td class="right-align"><a href="#">Excluir</a></td>
+                        <td class="right-align">
+                            <a href="{{ route('city.edit',$city->id) }}">
+                                <span> <i class="material-icons blue-text text-accent-2">edit</i> </span>
+                            </a>
+                            <form action="{{ route('city.destroy',$city->id) }}" method="POST" style="display: inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" style="border: 0; background:transparent;">
+                                    <span style="cursor: pointer"> <i class="material-icons red-text text-accent-3">delete_forever</i> </span>
+                                </button>
+                            </form>                            
+                        </td>
                     </tr>
                 @empty
                     <tr>

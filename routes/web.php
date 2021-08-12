@@ -18,7 +18,10 @@ use Illuminate\Support\Facades\Route;
 //     Route::resource('posts', 'App\Http\Controllers\PostController');
 // });
 
+
+//->except(['show']); vai usar todas as rotas exceto show
+//->only(['create','destroy']); vai so usar as rotas create e destroy
 Route::prefix('admin')->group(function ()
 {
-    Route::resource('city', 'App\Http\Controllers\Admin\CityController');
+    Route::resource('city', 'App\Http\Controllers\Admin\CityController')->except(['show']);
 });
