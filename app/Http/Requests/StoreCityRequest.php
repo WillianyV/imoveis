@@ -28,10 +28,9 @@ class StoreCityRequest extends FormRequest
         // ex. cpf, se for editar não tem mais problema, pois sabe agora q aquele usuario
         //possui este cpf
         // unique:cities,name,$this->id
-        //unique:table,column,except,idColumn
         //mas não da certo
         return [
-            'name' => "bail|required|min:3|max:100|unique:cities",
+            'name' => "bail|required|min:3|max:100",
         ];
     }
     // /**
