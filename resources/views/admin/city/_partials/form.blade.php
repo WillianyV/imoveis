@@ -10,9 +10,7 @@
             <input type="text" id="name" name="name" value="{{ $city->name ?? old('name') }}">
             <label for="name">Nome</label>
             @error('name')
-                <div class="red-text text-accent-3">
-                    <small>{{ $errors->first('name') }}</small>
-                </div>
+                    <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
             @enderror
         </div>
         {{-- end name --}}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ImovelRequest;
 use App\Models\City;
 use App\Models\Goal;
 use App\Models\Immobile;
@@ -22,8 +23,10 @@ class ImmobileController extends Controller
     public function index()
     {
         $sub_title = 'Imóveis';
-        $list_of_immobiles = Immobile::all();
-        
+        // quando for pegar os imoveis, também pegue a sua cidade e o seu endeco
+        //não precisa usar o inner join!!!!!, se for mais simples:
+        // como está se não usar o join mesmo
+        $list_of_immobiles = Immobile::with(['city','address'])->get();        
         return view('admin.immobile.index', compact('sub_title','list_of_immobiles'));
     }
 
@@ -48,7 +51,7 @@ class ImmobileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ImovelRequest $request)
     {        
         try {
             //uma transação é uma sequência de operações num sgbd que são tratadas como um bloco único 
@@ -111,7 +114,7 @@ class ImmobileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ImovelRequest $request, $id)
     {
         //
     }

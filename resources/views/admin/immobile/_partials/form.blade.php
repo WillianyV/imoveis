@@ -11,9 +11,7 @@
                 <input type="text" id="title" name="title" value="{{ $immobile->title ?? old('title') }}">
                 <label for="title">Titulo</label>
                 @error('title')
-                    <div class="red-text text-accent-3">
-                        <small>{{ $errors->first('title') }}</small>
-                    </div>
+                    <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
                 @enderror
             </div>
         </div>{{-- end title --}}  
@@ -23,34 +21,44 @@
                 <select name="city_id" id="city_id">
                     <option value="" disabled selected>Selecione uma Cidade</option>
                     @foreach ($list_of_cities as $city)
-                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                        <option value="{{ $city->id }}" {{ old('city_id') == $city->id ? 'selected' : ''}} >{{ $city->name }}</option>
                     @endforeach
                 </select>
                 <label for="city_id">Cidade</label>
                 @error('city_id')
-                    <div class="red-text text-accent-3">
-                        <small>{{ $errors->first('city_id') }}</small>
-                    </div>
+                    <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
                 @enderror
             </div>
         </div>{{-- end city_id --}}
         {{-- ADDRESS --}}
         <div class="row">
             <div class="input-field col s5">
-                <input type="text" name="street" id="street">
+                <input type="text" name="street" id="street" value="{{ $immobile->street ?? old('street') }}">
                 <label for="street">Rua</label>
+                @error('street')
+                    <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
+                @enderror
             </div>
             <div class="input-field col s2">
-                <input type="number" name="house_number" id="house_number">
+                <input type="number" name="house_number" id="house_number" value="{{ $immobile->house_number ?? old('house_number') }}">
                 <label for="house_number">Número</label>
+                @error('house_number')
+                    <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
+                @enderror
             </div>
             <div class="input-field col s2">
-                <input type="text" name="complement" id="complement">
+                <input type="text" name="complement" id="complement" value="{{ $immobile->complement ?? old('complement') }}">
                 <label for="complement">Complemento</label>
+                @error('complement')
+                    <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
+                @enderror
             </div>
             <div class="input-field col s3">
-                <input type="text" name="district" id="district">
+                <input type="text" name="district" id="district" value="{{ $immobile->district ?? old('district') }}">
                 <label for="district">Bairro</label>
+                @error('district')
+                    <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
+                @enderror
             </div>            
         </div>
         {{-- END ADDRESS --}}
@@ -60,7 +68,13 @@
                 <select multiple name="proximity[]" id="proximity">
                     <option value="" disabled>Selecione os pontos de interesse nas aproximidades</option>
                     @foreach ($list_of_proximitys as $proximity)
-                        <option value="{{ $proximity->id }}">{{ $proximity->name }}</option>
+                        <option value="{{ $proximity->id }}" 
+                            {{-- se existir um old priximidades --}}
+                            @if(old('proximity'))
+                            {{-- pegue o array --}}
+                                {{ in_array($proximity->id,old('proximity')) ? 'selected' : '' }} 
+                            @endif                               
+                        >{{ $proximity->name }}</option>
                     @endforeach
                 </select>
                 <label>Pontos de Referência</label>
@@ -74,14 +88,12 @@
                 <select name="type_id" id="type_id">
                     <option value="" disabled selected>Selecione uma Tipo</option>
                     @foreach ($list_of_types as $type)
-                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                        <option value="{{ $type->id }}" {{ old('type_id') == $type->id ? 'selected' : '' }} > {{ $type->name }}</option>
                     @endforeach
                 </select>
                 <label for="type_id">Tipo</label>
                 @error('type_id')
-                    <div class="red-text text-accent-3">
-                        <small>{{ $errors->first('type_id') }}</small>
-                    </div>
+                    <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
                 @enderror  
             </div> 
         </div>{{-- end type_id --}}
@@ -91,20 +103,19 @@
                 <div>
                     <label>Finalidade</label>
                 </div>
-                {{-- <input type="text" id="goal_id" name="goal_id" value="{{ $immobile->goal_id ?? old('goal_id') }}"> --}}
                 @foreach ($list_of_goals as $goal)
                 <span>
                     <label style="margin-right:30px">
                         <input type="radio" name="goal_id" id="goal_id"
-                            class="with-gap" value="{{ $goal->id }}">
+                            class="with-gap" value="{{ $goal->id }}"
+                            {{ old('goal_id') == $goal->id ? 'checked' : '' }}
+                            >
                         <span>{{ $goal->name }}</span>
                     </label>
                 </span>
                 @endforeach            
                 @error('goal_id')
-                <div class="red-text text-accent-3">
-                    <small>{{ $errors->first('goal_id') }}</small>
-                </div>
+                    <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
                 @enderror
             </div>
         </div>{{-- end goal_id --}}
@@ -115,9 +126,7 @@
                 <input type="number" id="price" name="price" value="{{ $immobile->price ?? old('price') }}">
                 <label for="price">Preço</label>
                 @error('price')
-                    <div class="red-text text-accent-3">
-                        <small>{{ $errors->first('price') }}</small>
-                    </div>
+                    <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
                 @enderror
             </div>{{-- end price --}}
             {{-- room --}}
@@ -125,9 +134,7 @@
                 <input type="number" id="room" name="room" value="{{ $immobile->room ?? old('room') }}">
                 <label for="room">Quantidade de Quartos</label>
                 @error('room')
-                    <div class="red-text text-accent-3">
-                        <small>{{ $errors->first('room') }}</small>
-                    </div>
+                    <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
                 @enderror
             </div>{{-- end room --}}
             {{-- living_room --}}
@@ -135,9 +142,7 @@
                 <input type="number" id="living_room" name="living_room" value="{{ $immobile->living_room ?? old('living_room') }}">
                 <label for="living_room">Quantidade de Salas</label>
                 @error('living_room')
-                    <div class="red-text text-accent-3">
-                        <small>{{ $errors->first('living_room') }}</small>
-                    </div>
+                    <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
                 @enderror
             </div>{{-- end living_room --}}
         </div>{{-- end row --}}
@@ -148,9 +153,7 @@
                 <input type="number" id="ground" name="ground" value="{{ $immobile->ground ?? old('ground') }}">
                 <label for="ground">Terreno em m²</label>
                 @error('ground')
-                    <div class="red-text text-accent-3">
-                        <small>{{ $errors->first('ground') }}</small>
-                    </div>
+                    <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
                 @enderror
             </div>{{-- end ground --}}
             {{-- bathroom --}}
@@ -158,9 +161,7 @@
                 <input type="number" id="bathroom" name="bathroom" value="{{ $immobile->bathroom ?? old('bathroom') }}">
                 <label for="bathroom">Quantidade de Banheiros</label>
                 @error('bathroom')
-                    <div class="red-text text-accent-3">
-                        <small>{{ $errors->first('bathroom') }}</small>
-                    </div>
+                    <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
                 @enderror
             </div>{{-- end bathroom --}}        
             {{-- garage --}}
@@ -168,9 +169,7 @@
                 <input type="number" id="garage" name="garage" value="{{ $immobile->garage ?? old('garage') }}">
                 <label for="garage">Vagas na Garagem</label>
                 @error('garage')
-                    <div class="red-text text-accent-3">
-                        <small>{{ $errors->first('garage') }}</small>
-                    </div>
+                    <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
                 @enderror
             </div>{{-- end garage --}} 
         </div>
@@ -180,9 +179,7 @@
                 <textarea id="descrytion" name="descrytion" class="materialize-textarea">{{ $immobile->descrytion ?? old('descrytion') }}</textarea>
                 <label for="descrytion">Descrição</label>
                 @error('descrytion')
-                    <div class="red-text text-accent-3">
-                        <small>{{ $errors->first('descrytion') }}</small>
-                    </div>
+                    <span class="red-text text-accent-3"><small>{{ $message }}</small></span>
                 @enderror
             </div>
         </div>{{-- end descrytion --}}
