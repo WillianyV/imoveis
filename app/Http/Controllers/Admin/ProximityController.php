@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Goal;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class GoalController extends Controller
+class ProximityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class GoalController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Goal  $goal
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Goal $goal)
+    public function show($id)
     {
         //
     }
@@ -52,10 +52,10 @@ class GoalController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Goal  $goal
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Goal $goal)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +64,10 @@ class GoalController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Goal  $goal
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Goal $goal)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +75,10 @@ class GoalController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Goal  $goal
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Goal $goal)
+    public function destroy($id)
     {
         //
     }

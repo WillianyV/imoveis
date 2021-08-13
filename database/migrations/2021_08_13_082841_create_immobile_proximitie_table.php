@@ -18,7 +18,6 @@ class CreateImmobileProximitieTable extends Migration
             $table->foreignId('immobile_id')->constrained()->onDelete('cascade');
             $table->foreignId('proximity_id')->constrained('proximities')->onDelete('cascade');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

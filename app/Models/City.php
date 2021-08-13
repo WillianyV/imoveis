@@ -11,4 +11,11 @@ class City extends Model
 
     protected $table = 'cities';
     protected $fillable = ['name'];
+
+    //QUEM É O DONO DO RELACIONAMENTO?
+    //quem não possui a chave estrangueira
+    public function immobile(){
+        // relacionamento 1 - N
+        return $this->hasMany(Immobile::class,'city_id');
+    }
 }

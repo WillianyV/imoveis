@@ -23,5 +23,10 @@ use Illuminate\Support\Facades\Route;
 //->only(['create','destroy']); vai so usar as rotas create e destroy
 Route::prefix('admin')->group(function ()
 {
+    Route::resource('address', 'App\Http\Controllers\Admin\AddressController');
+    Route::resource('goal', 'App\Http\Controllers\Admin\GoalController');
+    Route::resource('immobile', 'App\Http\Controllers\Admin\ImmobileController');
+    Route::resource('proximity', 'App\Http\Controllers\Admin\ProximityController');
+    Route::resource('type', 'App\Http\Controllers\Admin\TypeController');
     Route::resource('city', 'App\Http\Controllers\Admin\CityController')->except(['show']);
 });

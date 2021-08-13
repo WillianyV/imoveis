@@ -18,8 +18,8 @@
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo">Logo</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#">Imóveis</a></li>
-                <li><a href="#">Cidades</a></li>
+                <li><a href="{{ route('immobile.index') }}">Imóveis</a></li>
+                <li><a href="{{ route('city.index') }}">Cidades</a></li>
                 </ul>
             </div>
         </div>
@@ -35,6 +35,12 @@
         @if(session('menssage'))
             M.toast({html: "{{ session('menssage') }}" });
         @endif
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+        });
     </script>
+    
 </body>
 </html>

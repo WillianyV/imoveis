@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Immobile;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ImmobileController extends Controller
+class GoalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ImmobileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Immobile  $immobile
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Immobile $immobile)
+    public function show($id)
     {
         //
     }
@@ -52,10 +52,10 @@ class ImmobileController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Immobile  $immobile
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Immobile $immobile)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +64,10 @@ class ImmobileController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Immobile  $immobile
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Immobile $immobile)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +75,10 @@ class ImmobileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Immobile  $immobile
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Immobile $immobile)
+    public function destroy($id)
     {
         //
     }

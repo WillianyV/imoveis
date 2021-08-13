@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Proximity;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ProximityController extends Controller
+class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ProximityController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Proximity  $proximity
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Proximity $proximity)
+    public function show($id)
     {
         //
     }
@@ -52,10 +52,10 @@ class ProximityController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Proximity  $proximity
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proximity $proximity)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +64,10 @@ class ProximityController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Proximity  $proximity
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proximity $proximity)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +75,10 @@ class ProximityController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Proximity  $proximity
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Proximity $proximity)
+    public function destroy($id)
     {
         //
     }
