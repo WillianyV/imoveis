@@ -93,8 +93,9 @@
                     <option value="" disabled selected>Selecione uma Tipo</option>
                     @foreach ($list_of_types as $type)
                     {{-- dando erro no old em editar --}}
-                        <option value="{{ $type->id }}" {{ old('type_id', $immobile->type->id ?? '') == $type->id ? 'selected' : '' }} 
-                        > {{ $type->name }}</option>
+                        <option value="{{ $type->id }}" {{ old('type_id', $immobile->type->id ?? '') == $type->id ? 'selected' : '' }}> 
+                            {{ $type->name }}
+                        </option>
                     @endforeach
                 </select>
                 <label for="type_id">Tipo</label>

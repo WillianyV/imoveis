@@ -120,7 +120,23 @@ class ImmobileController extends Controller
      */
     public function update(ImovelRequest $request, $id)
     {
-        
+        $immobile = Immobile::find($id);
+        try {
+            DB::beginTransaction();
+                $immobile->update($request->all());
+                $immobile->address->update($request->all());
+
+                if($request->has('proximity')){
+                    $immobile->proximity()->sync($request->proximity);
+                }
+            Db::commit();
+            $request->session()->flash('menssage', "Imovel editado com sucesso.");
+            return redirect()->route('immobile.index');
+        } catch (Exception $e) {
+            Db::rollBack();
+        }
+        $request->session()->flash('menssage', "Erro ao editar imovel.");
+        return redirect()->route('immobile.index');
     }
 
     /**
