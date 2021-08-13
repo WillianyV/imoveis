@@ -21,13 +21,16 @@
                         <td>{{ $immobile->address->district }}</td>
                         <td>{{ $immobile->title }}</td>
                         <td class="right-align">
-                            <a href="{{ route('immobile.edit',$immobile->id) }}">
+                            <a href="{{ route('immobile.show',$immobile->id) }}" title="Ver">
+                                <span> <i class="material-icons indigo-text text-darken-2">remove_red_eye</i> </span>
+                            </a>
+                            <a href="{{ route('immobile.edit',$immobile->id) }}" title="Editar">
                                 <span> <i class="material-icons blue-text text-accent-2">edit</i> </span>
                             </a>
                             <form action="{{ route('immobile.destroy',$immobile->id) }}" method="POST" style="display: inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" style="border: 0; background:transparent;">
+                                <button type="submit" style="border: 0; background:transparent;" title="Excluir">
                                     <span style="cursor: pointer"> <i class="material-icons red-text text-accent-3">delete_forever</i> </span>
                                 </button>
                             </form>                            

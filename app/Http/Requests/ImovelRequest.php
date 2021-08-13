@@ -37,7 +37,7 @@ class ImovelRequest extends FormRequest
             'goal_id' => 'bail|required|integer',
             'street' => 'bail|required|min:1|max:100',
             'house_number' => 'bail|required|integer',
-            'complement' => 'bail|required|string|max:50',
+            'complement' => 'bail|nullable|string',
             'district' => 'bail|required|min:1|max:255',
             'proximity' => 'bail|nullable|array',
         ];

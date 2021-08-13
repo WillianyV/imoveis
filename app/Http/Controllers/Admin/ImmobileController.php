@@ -90,7 +90,8 @@ class ImmobileController extends Controller
      */
     public function show($id)
     {
-        //
+        $immobile = Immobile::with(['city','address','goal','type','proximity'])->find($id);
+        return view('admin.immobile.show', compact('immobile'));
     }
 
     /**
