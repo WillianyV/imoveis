@@ -70,14 +70,16 @@ class ImmobileController extends Controller
                     $immobile->proximity()->sync($request->proximity);
                 }
             DB::commit();
+            //enviar msg flash
+            $request->session()->flash('menssage', "Imovel cadastrado com sucesso.");
+
+            return redirect()->route('immobile.index');
         } catch (Exception $e) {
             DB::rollBack();
         }
+        $request->session()->flash('menssage', "Erro ao fazer o cadastro do imóvel.");
 
-        //enviar msg flash
-        $request->session()->flash('menssage', "Imovel cadastrado com sucesso.");
-
-        return redirect()->route('immobile.index');
+        return redirect()->route('immobile.index');        
     }
 
     /**
@@ -125,8 +127,24 @@ class ImmobileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+        //pesquisar o imovel
+        $immobille = Immobile::find($id);
+        try {
+            DB::beginTransaction();
+                //remover o endereco
+                $immobille->address()->delete();        
+                //remover o imovel
+                $immobille->delete();
+            DB::commit();
+
+            $request->session()->flash('menssage', "Imóvel deletado com sucesso");
+            return redirect()->route('immobile.index'); 
+        } catch (\Throwable $th) {
+            DB::rollBack();
+        }
+        $request->session()->flash('menssage', "Erro ao deletar imóvel");
+        return redirect()->route('immobile.index'); 
     }
 }
