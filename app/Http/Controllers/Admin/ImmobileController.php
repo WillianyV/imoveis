@@ -101,12 +101,14 @@ class ImmobileController extends Controller
      */
     public function edit($id)
     {
+        $immobile = Immobile::with(['city','address','goal','type','proximity'])->find($id);
+
         $list_of_cities = City::all();
         $list_of_goals = Goal::all();
         $list_of_types = Type::all();
         $list_of_proximitys = Proximity::all();
-        $action = route('immobile.update');
-        return view('admin.immobile.edit',compact('action','list_of_cities','list_of_goals','list_of_types','list_of_proximitys'));
+        $action = route('immobile.update',$immobile->id);
+        return view('admin.immobile.edit',compact('immobile','action','list_of_cities','list_of_goals','list_of_types','list_of_proximitys'));        
     }
 
     /**
@@ -118,7 +120,7 @@ class ImmobileController extends Controller
      */
     public function update(ImovelRequest $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -133,7 +135,7 @@ class ImmobileController extends Controller
         $immobille = Immobile::find($id);
         try {
             DB::beginTransaction();
-                //remover o endereco
+                //remover o RELACIONAMETO com endereco
                 $immobille->address()->delete();        
                 //remover o imovel
                 $immobille->delete();

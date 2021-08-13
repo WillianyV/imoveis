@@ -7,7 +7,7 @@
         @csrf
         {{-- name --}}
         <div class="input-field">
-            <input type="text" id="name" name="name" value="{{ $city->name ?? old('name') }}">
+            <input type="text" id="name" name="name" value="{{ old('title', $city->name ?? '') }}">
             <label for="name">Nome</label>
             @error('name')
                     <span class="red-text text-accent-3"><small>{{ $message }}</small></span>

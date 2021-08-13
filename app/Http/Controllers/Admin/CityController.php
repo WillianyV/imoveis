@@ -48,6 +48,8 @@ class CityController extends Controller
 
     public function destroy(City $city, Request $request)
     {
+        //ao remover as cidade também remove os imoveis que estão relacionados 
+        //há ela        
         $city->delete();
         $request->session()->flash('menssage', "Cidade excluída com sucesso.");
         return redirect()->route('city.index');
