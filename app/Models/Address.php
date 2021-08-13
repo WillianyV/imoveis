@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Address extends Model
 {
     use HasFactory;
+    protected $table = 'addresses';
+    protected $fillable = ['street','house_number','complement','district','immobile_id'];
 }

@@ -26,7 +26,7 @@ class CreateImmobilesTable extends Migration
             //chaves estrangeiras
             $table->foreignId('city_id')->constrained('cities')->onDelete('cascade');
             $table->foreignId('type_id')->constrained()->onDelete('cascade');
-            $table->foreignId('goal')->constrained()->onDelete('cascade');
+            $table->foreignId('goal_id')->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

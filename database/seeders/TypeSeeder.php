@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Type;
 use Illuminate\Database\Seeder;
 
 class TypeSeeder extends Seeder
@@ -13,6 +14,8 @@ class TypeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Type::create(['name' => 'Apartamento']);
+        Type::create(['name' => 'Casa']);
+        Type::create(['name' => 'Ponto Comercial']);
     }
 }

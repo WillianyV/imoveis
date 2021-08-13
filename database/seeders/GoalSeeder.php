@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Goal;
 use Illuminate\Database\Seeder;
 
 class GoalSeeder extends Seeder
@@ -13,6 +14,7 @@ class GoalSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Goal::create(['name' => 'Aluguel']);
+        Goal::create(['name' => 'Venda']);
     }
 }

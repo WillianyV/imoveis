@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Proximity extends Model
 {
     use HasFactory;
+    protected $table = 'proximities';
+    protected $fillable = ['name'];
 }

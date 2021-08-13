@@ -16,7 +16,7 @@ class CreateAddressesTable extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->string('street',100);
-            $table->integer('number');
+            $table->integer('house_number');
             $table->string('complement',50)->nullable();
             $table->string('district');            
             //chaves estrangeiras
