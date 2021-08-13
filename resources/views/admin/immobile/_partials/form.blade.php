@@ -34,10 +34,7 @@
                 @enderror
             </div>
         </div>{{-- end city_id --}}
-
-
         {{-- ADDRESS --}}
-        {{-- ['','','','','immobile_id']; --}}
         <div class="row">
             <div class="input-field col s5">
                 <input type="text" name="street" id="street">
@@ -56,12 +53,22 @@
                 <label for="district">Bairro</label>
             </div>            
         </div>
-
         {{-- END ADDRESS --}}
-
-
-        {{-- type_id --}}
-        <div class="row">
+        {{-- Proximity --}}
+        <div class="row">            
+            <div class="input-field col s12">
+                <select multiple name="proximity[]" id="proximity">
+                    <option value="" disabled>Selecione os pontos de interesse nas aproximidades</option>
+                    @foreach ($list_of_proximitys as $proximity)
+                        <option value="{{ $proximity->id }}">{{ $proximity->name }}</option>
+                    @endforeach
+                </select>
+                <label>Pontos de Referência</label>
+            </div>
+        </div>
+        {{-- endProximity --}} 
+        {{-- type_id --}}       
+        <div class="row">            
             <div class="input-field col s12">
                 {{-- <input type="text" id="type_id" name="type_id" value="{{ $immobile->type_id ?? old('type_id') }}"> --}}
                 <select name="type_id" id="type_id">

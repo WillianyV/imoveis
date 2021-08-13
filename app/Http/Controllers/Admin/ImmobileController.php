@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\Goal;
 use App\Models\Immobile;
+use App\Models\Proximity;
 use App\Models\Type;
 use Exception;
 use Illuminate\Http\Request;
@@ -36,8 +37,9 @@ class ImmobileController extends Controller
         $list_of_cities = City::all();
         $list_of_goals = Goal::all();
         $list_of_types = Type::all();
+        $list_of_proximitys = Proximity::all();
         $action = route('immobile.store');
-        return view('admin.immobile.create',compact('action','list_of_cities','list_of_goals','list_of_types'));
+        return view('admin.immobile.create',compact('action','list_of_cities','list_of_goals','list_of_types','list_of_proximitys'));
     }
 
     /**
@@ -55,8 +57,15 @@ class ImmobileController extends Controller
             DB::beginTransaction();
                 //Criar um imovel (e pegar as informações $immobile) que será utilizada para criar o endereco
                 $immobile = Immobile::create($request->all());
+                //relacionamento 1 - 1
                 //pega o id que foi criado e cria um endereco
                 $immobile->address()->create($request->all());
+
+                if($request->has('proximity')){
+                    //relacionamento N - N
+                    // ele vavi pegar 1 id ou um array de id's e sincronizar o imovel com os aproximidade
+                    $immobile->proximity()->sync($request->proximity);
+                }
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
@@ -90,8 +99,9 @@ class ImmobileController extends Controller
         $list_of_cities = City::all();
         $list_of_goals = Goal::all();
         $list_of_types = Type::all();
+        $list_of_proximitys = Proximity::all();
         $action = route('immobile.update');
-        return view('admin.immobile.edit',compact('action','list_of_cities','list_of_goals','list_of_types'));
+        return view('admin.immobile.edit',compact('action','list_of_cities','list_of_goals','list_of_types','list_of_proximitys'));
     }
 
     /**
