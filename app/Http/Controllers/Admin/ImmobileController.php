@@ -130,11 +130,11 @@ class ImmobileController extends Controller
                 if($request->has('proximity')){
                     $immobile->proximity()->sync($request->proximity);
                 }
-            Db::commit();
+            DB::commit();
             $request->session()->flash('menssage', "Imovel editado com sucesso.");
             return redirect()->route('immobile.index');
         } catch (Exception $e) {
-            Db::rollBack();
+            DB::rollBack();
         }
         $request->session()->flash('menssage', "Erro ao editar imovel.");
         return redirect()->route('immobile.index');

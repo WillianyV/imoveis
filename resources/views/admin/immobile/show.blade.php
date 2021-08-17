@@ -2,4 +2,5 @@
 
 @section('content')    
     show: {{ $immobile->title }}
+
 @endsection

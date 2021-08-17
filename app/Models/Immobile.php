@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Immobile extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+    
     protected $table = 'immobiles';
     protected $fillable = ['title','ground','living_room','bathroom','room','garage','descrytion','price','city_id','type_id','goal_id'];
 
