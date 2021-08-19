@@ -10,16 +10,16 @@
 
 ## 💻 Projeto Laravel 8
 
-Apredendo novas funcionalidade do laravel 8 atraves do curso administrado por Luciano Souza no youtube (https://www.youtube.com/watch?v=ENneh5IoXKI&list=LL&index=9)
+Apredendo novas funcionalidade do laravel 8 atraves do curso administrado por Luciano Souza no <a href="https://www.youtube.com/watch?v=ENneh5IoXKI&list=LL&index=9">youtube</a>. 
 
 ## 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
--   **Laravel 8
--   **Laragon
--   **laravel-pt-BR-localization
--   **PostgreSQL
+-   Laravel 8
+-   Laragon
+-   laravel-pt-BR-localization
+-   PostgreSQL
 
 ## 🤔 Como contribuir
 
