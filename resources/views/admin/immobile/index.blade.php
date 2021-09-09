@@ -21,6 +21,9 @@
                         <td>{{ $immobile->address->district }}</td>
                         <td>{{ $immobile->title }}</td>
                         <td class="right-align">
+                            <a href="{{ route('immobile.photos.index',$immobile->id) }}" title="Fotos">
+                                <span> <i class="material-icons green-text text-lighten-1">insert_photo</i> </span>
+                            </a>
                             <a href="{{ route('immobile.show',$immobile->id) }}" title="Ver">
                                 <span> <i class="material-icons indigo-text text-darken-2">remove_red_eye</i> </span>
                             </a>

@@ -29,4 +29,7 @@ Route::prefix('admin')->group(function ()
     Route::resource('proximity', 'App\Http\Controllers\Admin\ProximityController');
     Route::resource('type', 'App\Http\Controllers\Admin\TypeController');
     Route::resource('city', 'App\Http\Controllers\Admin\CityController')->except(['show']);
+    //Todas as minhas fotoas são associadas a um imovel (immobile.photos)
+    // imoveis/id de imoveis/foto/?parametros qualquer?
+    Route::resource('immobile.photos', 'App\Http\Controllers\Admin\PhotoController')->except(['show','update','edit']);
 });
