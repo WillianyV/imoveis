@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Immobile;
+use App\Models\Photo;
 use Illuminate\Http\Request;
 
 class PhotoController extends Controller
@@ -16,7 +17,10 @@ class PhotoController extends Controller
     public function index($id)
     {
         $immobile = Immobile::find($id);
-        return view('admin.immobile.photos.index',compact('immobile'));
+        
+        $photos = Photo::where('immobile_id', $id)->get();
+
+        return view('admin.immobile.photos.index',compact('immobile','photos'));
     }
 
     /**
@@ -24,9 +28,10 @@ class PhotoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $immobile = Immobile::find($id);
+        return view('admin.immobile.photos.form',compact('immobile'));
     }
 
     /**
@@ -37,7 +42,15 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //checar se veio a imagem na requisição
+        if($request->hasFile('photo')){
+            //checar se não houve erro no upload da imagem
+            if($request->photo->isValid()){
+                $path = $request->photo->store('images', 'public');
+            }
+        }
+
+        dd($path);
     }
 
     /**
