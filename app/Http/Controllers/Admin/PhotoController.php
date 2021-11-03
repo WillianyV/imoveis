@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PhotoRequest;
 use App\Models\Immobile;
 use App\Models\Photo;
+use Illuminate\Contracts\Cache\Store;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
 {
@@ -67,8 +70,16 @@ class PhotoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$immobile_id,$photo_id)
     {
-        //
+        $photo = Photo::find($photo_id);
+        //apagando a imagem no disco
+        Storage::disk('public')->delete($photo->url);
+
+        //apagando o caminho no Banco de dados
+        $photo->delete();
+
+        $request->session()->flash('Sucesso','Foto excluida com sucesso!');
+        return redirect()->route('immobile.photos.index',$immobile_id);
     }
 }
