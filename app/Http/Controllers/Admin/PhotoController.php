@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PhotoRequest;
 use App\Models\Immobile;
 use App\Models\Photo;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 
 class PhotoController extends Controller
 {
@@ -42,27 +40,12 @@ class PhotoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $immobile_id)
+    public function store(PhotoRequest $request, $immobile_id)
     {
         //checar se veio a imagem na requisição
         if($request->hasFile('photo')){
             //checar se não houve erro no upload da imagem
-            if($request->photo->isValid()){   
-                /**
-                 * //não da certo dessa forma
-                 * //pegando o caminho e nome do arquivo
-                 * $path = $request->photo->hashName("immobile/$immobile_id");
-                 * //redimencionar a imagem
-                 * $img = Image::make($request->photo)->fit(1600,900);
-                 * //Salvar no disco
-                 * Storage::disk('public')->put($path,$img->encode());               
-                 * // armazenando o caminho da foto
-                 * $photo = new Photo();
-                 * $photo->url = $path;
-                 * $photo->immobile_id = $immobile_id;
-                 * $photo->save();
-                 */
-
+            if($request->photo->isValid()){  
                 //armazenando o arquivo no disco publico e retornando a url (caminho) do arquivo
                 $extension = $request->photo->extension();
                 $imageName = md5(strtotime("now") . $request->photo->getClientOriginalName()) . "." . $extension;
