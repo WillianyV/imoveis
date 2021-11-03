@@ -24,7 +24,7 @@ class ImmobileController extends Controller
     {
         $sub_title = 'Imóveis';
         // quando for pegar os imoveis, também pegue a sua cidade e o seu endeco
-        //não precisa usar o inner join!!!!!, se for mais simples:
+        // não precisa usar o inner join!!!!!, se for mais simples:
         // como está se não usar o join mesmo
         $list_of_immobiles = Immobile::with(['city','address'])->get();        
         return view('admin.immobile.index', compact('sub_title','list_of_immobiles'));
