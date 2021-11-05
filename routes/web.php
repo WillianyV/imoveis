@@ -18,9 +18,12 @@ use Illuminate\Support\Facades\Route;
 //     Route::resource('posts', 'App\Http\Controllers\PostController');
 // });
 
+//ROTAS ADMINISTRATIVAS
 
-//->except(['show']); vai usar todas as rotas exceto show
-//->only(['create','destroy']); vai so usar as rotas create e destroy
+/** 
+ * ->except(['show']); vai usar todas as rotas exceto show
+ * ->only(['create','destroy']); vai so usar as rotas create e destroy 
+ */
 Route::prefix('admin')->group(function ()
 {
     Route::resource('address', 'App\Http\Controllers\Admin\AddressController');
@@ -33,3 +36,6 @@ Route::prefix('admin')->group(function ()
     // imoveis/id de imoveis/foto/?parametros qualquer?
     Route::resource('immobile.photos', 'App\Http\Controllers\Admin\PhotoController')->except(['show','update','edit']);
 });
+
+//ROTAS DO SITE
+Route::resource('/', 'App\Http\Controllers\Site\CitySiteController')->only(['index']);

@@ -1,0 +1,10 @@
+.div-section{
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-around;
+}
+
+.card-style{
+    width: 280px;
+    height: 90%;
+}
