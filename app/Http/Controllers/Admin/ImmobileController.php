@@ -12,6 +12,7 @@ use App\Models\Type;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
 
 class ImmobileController extends Controller
 {
@@ -20,14 +21,32 @@ class ImmobileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $sub_title = 'Imóveis';
-        // quando for pegar os imoveis, também pegue a sua cidade e o seu endeco
-        // não precisa usar o inner join!!!!!, se for mais simples:
-        // como está se não usar o join mesmo
-        $list_of_immobiles = Immobile::with(['city','address'])->get();        
-        return view('admin.immobile.index', compact('sub_title','list_of_immobiles'));
+        // Passado o Request no index, pode fazer o search por aqui
+        $list_of_immobiles = Immobile::join('cities','cities.id','=','immobiles.city_id')
+            ->join('addresses','addresses.immobile_id','=','immobiles.id')
+            ->orderBy('cities.name','ASC')
+            ->orderBy('addresses.district','ASC')
+            ->orderBy('title','ASC');
+
+        if($request->city_id){
+            $list_of_immobiles->where('city_id',$request->city_id);
+        }
+
+        if($request->title){
+            $list_of_immobiles->where('title','like',"%$request->title%");
+        }
+
+        $filters = $request->except('_token');
+
+        //withQueryString = utilizado para passar as querys dos filtros
+        $list_of_immobiles = $list_of_immobiles->paginate(15)->withQueryString();
+
+        $cities = City::orderBy('name')->get();
+
+        return view('admin.immobile.index', compact('sub_title','list_of_immobiles','cities','filters'));
     }
 
     /**
