@@ -39,3 +39,5 @@ Route::prefix('admin')->group(function ()
 
 //ROTAS DO SITE
 Route::resource('/', 'App\Http\Controllers\Site\CitySiteController')->only(['index']);
+//rota alinhada:
+Route::resource('cities.immobile', 'App\Http\Controllers\Site\ImmobileController')->only(['index','show']);

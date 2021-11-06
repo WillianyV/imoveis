@@ -44,4 +44,10 @@ class Immobile extends Model
         // e a chave estrangeira da tabela pivot com relação ao  OUTRO modelo 'proximity_id'     
     }
 
+    public function photo()
+    {
+        //um imovel tem varias fotos
+        return $this->hasMany(Photo::class);
+    }
+
 }

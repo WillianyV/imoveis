@@ -8,3 +8,7 @@
     width: 280px;
     height: 90%;
 }
+
+.slider-text{
+    text-shadow: 2px 2px 8 px #1b5e20;
+}
