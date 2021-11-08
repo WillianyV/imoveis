@@ -28,12 +28,12 @@ class Immobile extends Model
 
     public function type(){
         //relacionamento 1 - N
-        return $this->belongsTo(City::class, 'type_id');
+        return $this->belongsTo(Type::class, 'type_id');
     }
 
     public function goal(){
         //relacionamento 1 - N
-        return $this->belongsTo(City::class, 'goal_id');
+        return $this->belongsTo(Goal::class, 'goal_id');
     }
 
     public function proximity(){

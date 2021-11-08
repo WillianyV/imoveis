@@ -1,6 +1,5 @@
-@extends('admin.layouts.app')
-
-@section('content')        
+@extends('site.layouts.app')
+@section('content') 
     <section class="section">
         <div class="row">
             <div class="col s12">
@@ -112,9 +111,21 @@
             <div class="col">Descrição: </div>
             <div class="col"><b>{{  $immobile->descrytion }}</b></div>
         </div>
-        {{--  --}}
+
+        {{-- imagens do imovel --}}
+        <h4 class="center">
+            <span class="teal-text">Imagens</span> do Imóvel
+        </h4>
+        <div style="display:flex; flex-wrap:wrap; justify-content; space-around">
+            @foreach ($immobile->photo as $photo)
+                <img style="margin: 5px;" width="195" heigth="130" 
+                class="materialboxed" src="{{ asset("storage/{$photo->url}") }}"/>
+            @endforeach
+        </div>
+
+        {{-- btn voltar --}}
         <div class="right-align">
-            <a href="{{ route('immobile.index') }}" class="waves-effect waves-light btn-small">Cancelar</a>
+            <a href="{{ url()->previous() }}" class="btn-flat waves-effect">Voltar</a>
         </div>
         {{--   btn-flat waves-effect --}}        
     </section>

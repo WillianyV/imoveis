@@ -30,11 +30,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>      
     <script>
         document.addEventListener('DOMContentLoaded',function(){
+            //Slider
             var sliders = document.querySelectorAll('.slider');
             M.Slider.init(sliders,{
                 indicators:false,
                 height:400,
             });
+
+            //Material Box
+            var boxes = document.querySelectorAll('.materialboxed');
+            M.Materialbox.init(boxes);
         });
     </script>      
 </body>

@@ -12,12 +12,15 @@ class ImmobileController extends Controller
     public function index($city_id)
     {
         $city = City::find($city_id);
-        $immobile = Immobile::with([]);
-        return view('site.cities.immobile.index',compact('city'));
+        $immobiles = Immobile::with(['goal','photo'])
+            ->where('city_id',$city_id)
+            ->paginate(3);
+        return view('site.cities.immobile.index',compact('city','immobiles'));
     }
 
-    public function show()
+    public function show($city_id,$immobile_id)
     {
-        
+        $immobile = Immobile::find($immobile_id);
+        return view('site.cities.immobile.show',compact('immobile'));    
     }
 }
